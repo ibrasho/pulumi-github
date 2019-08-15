@@ -9,7 +9,7 @@ let __config = new pulumi.Config("github");
 /**
  * The GitHub Base API URL
  */
-export let baseUrl: string | undefined = __config.get("baseUrl");
+export let baseUrl: string | undefined = __config.get("baseUrl") || utilities.getEnv("GITHUB_BASE_URL");
 /**
  * Whether to run outside an organization.
  */
@@ -21,7 +21,7 @@ export let insecure: boolean | undefined = __config.getObject<boolean>("insecure
 /**
  * The GitHub organization name to manage. If `individual` is false, organization is required.
  */
-export let organization: string | undefined = __config.get("organization");
+export let organization: string | undefined = __config.get("organization") || utilities.getEnv("GITHUB_ORGANIZATION");
 /**
  * The OAuth token used to connect to GitHub.
  */

@@ -38,9 +38,13 @@ class Provider(pulumi.ProviderResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = dict()
 
+            if base_url is None:
+                base_url = utilities.get_env('GITHUB_BASE_URL')
             __props__['base_url'] = base_url
             __props__['individual'] = pulumi.Output.from_input(individual).apply(json.dumps) if individual is not None else None
             __props__['insecure'] = pulumi.Output.from_input(insecure).apply(json.dumps) if insecure is not None else None
+            if organization is None:
+                organization = utilities.get_env('GITHUB_ORGANIZATION')
             __props__['organization'] = organization
             if token is None:
                 token = utilities.get_env('GITHUB_TOKEN')

@@ -81,13 +81,13 @@ To use from JavaScript or TypeScript in Node.js, install using either
 
 ::
 
-   $ npm install @pulumi/xyx
+   $ npm install @ibrasho/pulumi-github
 
 or ``yarn``:
 
 ::
 
-   $ yarn add @pulumi/xyx
+   $ yarn add @ibrasho/pulumi-github
 
 Python
 ~~~~~~
@@ -96,7 +96,7 @@ To use from Python, install using ``pip``:
 
 ::
 
-   $ pip install pulumi_xyx
+   $ pip install pulumi_github
 
 Go
 ~~
@@ -105,7 +105,7 @@ To use from Go, use ``go get`` to grab the latest version of the library
 
 ::
 
-   $ go get github.com/pulumi/pulumi-github/sdk/go/...
+   $ go get github.com/ibrasho/pulumi-github/sdk/go/...
 
 Configuration
 -------------
@@ -113,10 +113,31 @@ Configuration
 The following configuration points are available for the ``github``
 provider:
 
--  ``github:apiKey`` (environment: ``XYZ_API_KEY``) - the API key for
-   ``github``
--  ``github:region`` (environment: ``XYZ_REGION``) - the region in which
-   to deploy resources
+-  token - (Optional) This is the GitHub personal access token. It must
+   be provided, but it can also be sourced from the GITHUB_TOKEN
+   environment variable.
+
+-  organization - (Optional) This is the target GitHub organization to
+   manage. The account corresponding to the token will need “owner”
+   privileges for this organization. It must be provided, but it can
+   also be sourced from the GITHUB_ORGANIZATION environment variable.
+
+-  base_url - (Optional) This is the target GitHub base API endpoint.
+   Providing a value is a requirement when working with GitHub
+   Enterprise. It is optional to provide this value and it can also be
+   sourced from the GITHUB_BASE_URL environment variable. The value must
+   end with a slash, and generally includes the API version, for
+   instance https://github.someorg.example/api/v3/.
+
+-  insecure - (Optional) Whether server should be accessed without
+   verifying the TLS certificate. As the name suggests this is insecure
+   and should not be used beyond experiments, accessing local
+   (non-production) GHE instance etc. There is a number of ways to
+   obtain trusted certificate for free, e.g. from Let’s Encrypt. Such
+   trusted certificate does not require this option to be enabled.
+   Defaults to false.
+
+-  individual: (Optional) Whether to run outside an organization.
 
 Reference
 ---------

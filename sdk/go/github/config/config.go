@@ -10,7 +10,14 @@ import (
 
 // The GitHub Base API URL
 func GetBaseUrl(ctx *pulumi.Context) string {
-	return config.Get(ctx, "github:baseUrl")
+	v, err := config.Try(ctx, "github:baseUrl")
+	if err == nil {
+		return v
+	}
+	if dv, ok := getEnvOrDefault("", nil, "GITHUB_BASE_URL").(string); ok {
+		return dv
+	}
+	return v
 }
 
 // Whether to run outside an organization.
@@ -25,7 +32,14 @@ func GetInsecure(ctx *pulumi.Context) bool {
 
 // The GitHub organization name to manage. If `individual` is false, organization is required.
 func GetOrganization(ctx *pulumi.Context) string {
-	return config.Get(ctx, "github:organization")
+	v, err := config.Try(ctx, "github:organization")
+	if err == nil {
+		return v
+	}
+	if dv, ok := getEnvOrDefault("", nil, "GITHUB_ORGANIZATION").(string); ok {
+		return dv
+	}
+	return v
 }
 
 // The OAuth token used to connect to GitHub.

@@ -7,7 +7,7 @@
         "github"
     ],
     "homepage": "https://pulumi.io",
-    "repository": "https://github.com/pulumi/pulumi-github",
+    "repository": "https://github.com/ibrasho/pulumi-github",
     "license": "Apache-2.0",
     "scripts": {
         "build": "tsc"

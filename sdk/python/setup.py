@@ -37,13 +37,13 @@ setup(name='pulumi_github',
       keywords='pulumi github',
       url='https://pulumi.io',
       project_urls={
-          'Repository': 'https://github.com/pulumi/pulumi-github'
+          'Repository': 'https://github.com/ibrasho/pulumi-github'
       },
       license='Apache-2.0',
       packages=find_packages(),
       install_requires=[
           'parver>=0.2.1',
-          'pulumi>=0.17.29,<1.0.0',
+          'pulumi>=0.17.28,<1.0.0',
           'semver>=2.8.1'
       ],
       zip_safe=False)

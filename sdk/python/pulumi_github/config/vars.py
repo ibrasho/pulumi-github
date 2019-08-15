@@ -10,7 +10,7 @@ from .. import utilities, tables
 
 __config__ = pulumi.Config('github')
 
-base_url = __config__.get('baseUrl')
+base_url = __config__.get('baseUrl') or utilities.get_env('GITHUB_BASE_URL')
 """
 The GitHub Base API URL
 """
@@ -25,7 +25,7 @@ insecure = __config__.get('insecure')
 Whether server should be accessed without verifying the TLS certificate.
 """
 
-organization = __config__.get('organization')
+organization = __config__.get('organization') or utilities.get_env('GITHUB_ORGANIZATION')
 """
 The GitHub organization name to manage. If `individual` is false, organization is required.
 """

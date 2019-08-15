@@ -19,7 +19,6 @@ import (
 
 	"github.com/hashicorp/terraform/helper/schema"
 	"github.com/pulumi/pulumi-terraform/pkg/tfbridge"
-	"github.com/pulumi/pulumi/pkg/resource"
 	"github.com/pulumi/pulumi/pkg/tokens"
 	"github.com/terraform-providers/terraform-provider-github/github"
 )
@@ -58,19 +57,19 @@ func makeResource(mod string, res string) tokens.Type {
 	return makeType(mod+"/"+fn, res)
 }
 
-// boolRef returns a reference to the bool argument.
-func boolRef(b bool) *bool {
-	return &b
-}
+// // boolRef returns a reference to the bool argument.
+// func boolRef(b bool) *bool {
+// 	return &b
+// }
 
-// stringValue gets a string value from a property map if present, else ""
-func stringValue(vars resource.PropertyMap, prop resource.PropertyKey) string {
-	val, ok := vars[prop]
-	if ok && val.IsString() {
-		return val.StringValue()
-	}
-	return ""
-}
+// // stringValue gets a string value from a property map if present, else ""
+// func stringValue(vars resource.PropertyMap, prop resource.PropertyKey) string {
+// 	val, ok := vars[prop]
+// 	if ok && val.IsString() {
+// 		return val.StringValue()
+// 	}
+// 	return ""
+// }
 
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
@@ -85,13 +84,25 @@ func Provider() tfbridge.ProviderInfo {
 		Keywords:    []string{"pulumi", "github"},
 		License:     "Apache-2.0",
 		Homepage:    "https://pulumi.io",
-		Repository:  "https://github.com/pulumi/pulumi-github",
+		Repository:  "https://github.com/ibrasho/pulumi-github",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"token": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"GITHUB_TOKEN"},
 				},
 			},
+			"organization": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"GITHUB_ORGANIZATION"},
+				},
+			},
+			"base_url": {
+				Default: &tfbridge.DefaultInfo{
+					EnvVars: []string{"GITHUB_BASE_URL"},
+				},
+			},
+			"insecure":   {},
+			"individual": {},
 		},
 		Resources: map[string]*tfbridge.ResourceInfo{
 			"github_branch_protection":        {Tok: makeResource(mainMod, "BranchProtection")},
@@ -138,7 +149,7 @@ func Provider() tfbridge.ProviderInfo {
 		Python: &tfbridge.PythonInfo{
 			// List any Python dependencies and their version ranges
 			Requires: map[string]string{
-				"pulumi": ">=0.17.29,<1.0.0",
+				"pulumi": ">=0.17.28,<1.0.0",
 			},
 		},
 	}
