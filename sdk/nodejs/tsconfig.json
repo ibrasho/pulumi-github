@@ -1,0 +1,47 @@
+{
+    "compilerOptions": {
+        "outDir": "bin",
+        "target": "es6",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "declaration": true,
+        "sourceMap": true,
+        "stripInternal": true,
+        "experimentalDecorators": true,
+        "noFallthroughCasesInSwitch": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true
+    },
+    "files": [
+        "branchProtection.ts",
+        "config/index.ts",
+        "config/vars.ts",
+        "getCollaborators.ts",
+        "getIPRanges.ts",
+        "getRepositories.ts",
+        "getRepository.ts",
+        "getTeam.ts",
+        "getUser.ts",
+        "index.ts",
+        "issueLabel.ts",
+        "membership.ts",
+        "organizationBlock.ts",
+        "organizationProject.ts",
+        "organizationWebhook.ts",
+        "projectColumn.ts",
+        "provider.ts",
+        "repository.ts",
+        "repositoryCollaborator.ts",
+        "repositoryDeployKey.ts",
+        "repositoryProject.ts",
+        "repositoryWebhook.ts",
+        "team.ts",
+        "teamMembership.ts",
+        "teamRepository.ts",
+        "userGPGKey.ts",
+        "userInvitationAccepter.ts",
+        "userSSHKey.ts",
+        "utilities.ts"
+    ]
+}
+
